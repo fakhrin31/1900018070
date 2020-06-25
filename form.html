@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+</head>
+<body>
+	<form method="post" action="form.php">
+		<table bgcolor="#ccccff" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<td colspan="2">FORM DIRI</td>
+			</tr>
+			
+			<tr>
+				<td>Nama</td>
+				<td><input type="text" name="nama"></td>
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td><textarea name="alamat"></textarea></td>
+			</tr>
+			<tr>
+				<td>Nomor Telpon</td>
+				<td><input type="text" name="telpon"></td>
+			</tr>
+			<tr>
+				<td>Jenis Kelamin</td>
+				<td><input type="radio" name="kelamin" value="laki-laki">Laki-Laki
+					<input type="radio" name="kelamin" value="perempuan">Perempuan</td>
+			</tr>
+			<tr>
+				<td>Agama</td>
+				<td>
+					<select name ="agama">					
+					<option value="">Pilih</option>
+					<option value="islam">Islam</option>
+					<option value="kristen">Kristen</option>
+					<option value="katolik">Katolik</option>
+					<option value="hindu">Hindu</option>
+					<option value="budha">Budha</option>
+					<option value="konghucu">Konghucu</option>
+					<option value="atheis">Atheis</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Kewarganegaraan</td>
+				<td><input type="radio" name="kwn" value="wni">WNI
+					<input type="radio" name="kwn" value="wna">WNA</td>
+			</tr>
+			<tr>
+				<td>
+				<button type="submit">Submit</button>
+				<button type="submit">Cancel</button>
+				</td>
+			</tr>
+	</table>
+	</form>
+</body>
+</html>
