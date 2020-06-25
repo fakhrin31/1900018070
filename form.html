@@ -4,34 +4,55 @@
 	<title>Form</title>
 </head>
 <body>
-	<form><table bgcolor="#ccccff" border="1" cellspacing="0" cellpadding="40">
-			<td align="center">FORM DIRI 
-				<br>
-				<pre><label for="Nama">	Nama				<input type="text" id="Nama"></label></pre>
-				<pre><label for="Alamat">	Alamat				<textarea></textarea></label></pre>
-				<pre><label for="Telp">	Nomor Telpon				<input type="text" id="Telp"></label></pre>
-				<pre><label for="Jenis Kelamin">	Jenis Kelamin			<input type="radio" id="pria" name="Jenis Kelamin"><label for="pria">Laki-Laki</label><input type="radio" id="wanita" name="Jenis Kelamin"><label for="wanita">Perempuan</label>
-				</pre>
-				</label>
-				<pre>Agama				     <select name = agama>					
-					<option name = agama>Pilih</option>
-					<option name = agama>Islam</option>
-					<option name = agama>Kristen</option>
-					<option name = agama>Katolik</option>
-					<option name = agama>Hindu</option>
-					<option name = agama>Budha</option>
-					<option name = agama>Konghucu</option>
-					<option name = agama>Atheis</option>
-				</select></pre>
-				</pre>
-				<pre><label for="Kwn">	Kewarganegaraan				</label>
-					<input type="checkbox" id="Kwn" name="WNI">WNI<label for="Kwn"></label>
-					<input type="checkbox" id="Kwn" name="WNA">WNA<label for="Kwn"></label>
-				<p align="center"><button type="submit">Submit</button>
+	<form method="post" action="form.php">
+		<table bgcolor="#ccccff" border="0" cellspacing="0" cellpadding="10">
+			<tr>
+				<td colspan="2">FORM DIRI</td>
+			</tr>
+			
+			<tr>
+				<td>Nama</td>
+				<td><input type="text" name="nama"></td>
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td><textarea name="alamat"></textarea></td>
+			</tr>
+			<tr>
+				<td>Nomor Telpon</td>
+				<td><input type="text" name="telpon"></td>
+			</tr>
+			<tr>
+				<td>Jenis Kelamin</td>
+				<td><input type="radio" name="kelamin" value="laki-laki">Laki-Laki
+					<input type="radio" name="kelamin" value="perempuan">Perempuan</td>
+			</tr>
+			<tr>
+				<td>Agama</td>
+				<td>
+					<select name ="agama">					
+					<option value="">Pilih</option>
+					<option value="islam">Islam</option>
+					<option value="kristen">Kristen</option>
+					<option value="katolik">Katolik</option>
+					<option value="hindu">Hindu</option>
+					<option value="budha">Budha</option>
+					<option value="konghucu">Konghucu</option>
+					<option value="atheis">Atheis</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Kewarganegaraan</td>
+				<td><input type="radio" name="kwn" value="wni">WNI
+					<input type="radio" name="kwn" value="wna">WNA</td>
+			</tr>
+			<tr>
+				<td>
+				<button type="submit">Submit</button>
 				<button type="submit">Cancel</button>
-				</p>
-			</pre>
-		</td>
+				</td>
+			</tr>
 	</table>
 	</form>
 </body>
