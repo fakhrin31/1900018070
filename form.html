@@ -2,25 +2,27 @@
 <html>
 <head>
 	<title>Form</title>
+	<script src="jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div class="content">
 	<form method="post" action="form.php">
 		<table bgcolor="#ccccff" border="0" cellspacing="0" cellpadding="10">
 			<tr>
-				<td colspan="2">FORM DIRI</td>
-			</tr>
-			
+				<td colspan="2">FORM Tiket Bus Antar Provinsi di Jawa</td>
+			</tr>			
 			<tr>
 				<td>Nama</td>
 				<td><input type="text" name="nama"></td>
 			</tr>
 			<tr>
-				<td>Alamat</td>
-				<td><textarea name="alamat"></textarea></td>
-			</tr>
-			<tr>
 				<td>Nomor Telpon</td>
 				<td><input type="text" name="telpon"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="email" name="email"></td>
 			</tr>
 			<tr>
 				<td>Jenis Kelamin</td>
@@ -28,32 +30,110 @@
 					<input type="radio" name="kelamin" value="perempuan">Perempuan</td>
 			</tr>
 			<tr>
-				<td>Agama</td>
-				<td>
-					<select name ="agama">					
-					<option value="">Pilih</option>
-					<option value="islam">Islam</option>
-					<option value="kristen">Kristen</option>
-					<option value="katolik">Katolik</option>
-					<option value="hindu">Hindu</option>
-					<option value="budha">Budha</option>
-					<option value="konghucu">Konghucu</option>
-					<option value="atheis">Atheis</option>
-					</select>
-				</td>
+				<td>Tanggal Berangkat</td>
+				<td><input type="date" name="tanggal"></td>
 			</tr>
 			<tr>
-				<td>Kewarganegaraan</td>
-				<td><input type="radio" name="kwn" value="wni">WNI
-					<input type="radio" name="kwn" value="wna">WNA</td>
+				<td>Asal</td>
+				<td><select id="asal" name="asal">
+					<option value="">-- Pilih Asal --</option>
+					<option value="banten">Banten</option>
+					<option value="jakarta">DKI Jakarta</option>
+					<option value="jawabarat">Jawa Barat</option>
+					<option value="jawatengah">Jawa Tengah</option>
+					<option value="jawatimur">Jawa Timur</option>
+					<option value="yogya">DI Yogyakarta</option>
+					</select></td>
 			</tr>
 			<tr>
-				<td>
-				<button type="submit">Submit</button>
-				<button type="submit">Cancel</button>
-				</td>
+				<td>Tujuan</td>
+				<td><select id="tujuan" name="tujuan">
+					<option value="">-- Pilih Tujuan --</option>
+					<option value="banten">Banten</option>
+					<option value="jakarta">DKI Jakarta</option>
+					<option value="jawabarat">Jawa Barat</option>
+					<option value="jawatengah">Jawa Tengah</option>
+					<option value="jawatimur">Jawa Timur</option>
+					<option value="yogya">DI Yogyakarta</option>
+					</select></td>
+			</tr>
+			<tr>
+				<td>Kelas</td>
+				<td><select id="kelas" name="kelas">
+					<option value="">-- Pilih Kelas --</option>
+					<option value="ekonomi">Ekonomi</option>
+					<option value="bisnis">Bisnis</option>
+					<option value="vip">VIP</option>
+					<option value="eksekutif">Eksekutif</option>
+					</select></td>
+			</tr>
+			<tr> 
+				<td>Jumlah Tiket</td>
+				<td><input type="number" name="jumlah" min="1" max="6"></td>
+			</tr>
+			<tr>
+				<td>Jam Keberangkatan</td>
+				<td><input type="time" name="jam" required/></td>
+			</tr>
+			<tr>
+				<td><h2>Harga Tiket</h2></td>
+				<td id="harga"><h2>Rp xxx.xxx</h2> <input type="hidden" id="inputharga" name="harga"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Pesan" /></td>
 			</tr>
 	</table>
 	</form>
+</div>
+
+	<script type="text/javascript">
+
+		var asal 		= '';
+		var tujuan 		= '';
+		var kelas 		= '';
+		var harga 		= 0;
+		var jumlah 		= 1; 	
+		$(document).ready(function(){
+
+			$('#asal').on('change',function(){
+				asal = $(this).val();
+				getHarga(asal, tujuan, kelas);
+			})
+			$('#tujuan').on('change',function(){
+				tujuan = $(this).val();
+				getHarga(asal, tujuan, kelas);
+			})
+			$('#kelas').on('change',function(){
+				kelas = $(this).val();
+				getHarga(asal, tujuan, kelas);
+			})
+
+			$("input[name='jumlah']").on("input", function() {
+			    jumlah = $(this).val();
+			    var totalharga = harga * jumlah; 
+			    console.log(jumlah);
+			    $('#harga h2').text('Rp '+totalharga);
+			    $('#inputharga').val(totalharga);
+			});
+				
+		})
+
+		function getHarga(asal, tujuan, kelas){
+			// if(asal && tujuan && kelas){
+				$.get('fungsi.php?asal='+asal+'&tujuan='+tujuan+'&kelas='+kelas, function(res){
+					console.log(res);
+			    	var totalharga = res * jumlah; 
+					harga = res;
+					$('#harga h2').text('Rp '+totalharga);
+			    	$('#inputharga').val(totalharga);
+				})
+			// } else {
+				// console.log('data belum lengkap');
+			// }
+			
+		}
+
+		
+	</script>
 </body>
 </html>
